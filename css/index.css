@@ -21,9 +21,18 @@ body {
   line-height: 1.2;
   margin: 0;
   padding: 0;
+  min-width: 375px;
 }
 
 /* Typography */
+.ff-oswald {
+  font-family: "Oswald", sans-serif;
+}
+
+.ff-roboto {
+  font-family: "Roboto", sans-serif;
+}
+
 .text-primary {
   color: var(--clr-primary);
 }
@@ -44,6 +53,7 @@ nav {
   top: 40%;
   right: 1em;
   margin-right: 0.5em;
+  color: var(--clr-primary-darker);
 }
 
 .nav-list {
@@ -60,7 +70,7 @@ nav {
   justify-content: flex-end;
   height: 3em;
   padding-right: 1em;
-  border-right: 1px solid var(--clr-primary);
+  border-right: 1px solid rgb(175, 175, 175);
 }
 
 .nav-content:last-child {
@@ -82,7 +92,7 @@ nav {
   height: 0.5rem;
   top: 0;
   right: -0.25em;
-  background-color: var(--clr-primary);
+  background-color: rgb(175, 175, 175);
   border-radius: 50%;
 }
 
@@ -97,6 +107,7 @@ nav {
   background-image: url("../images/sky-background.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -149,8 +160,10 @@ span {
 }
 
 .portfolio-img {
-  width: 70%;
-  margin: 2em auto;
+  display: block;
+  max-width: 100%;
+  margin: 1em;
+  border-radius: 0.5em;
 }
 
 .section-content_about {
@@ -161,7 +174,8 @@ span {
   background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
     url("../images/desk-background.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top center;
+  background-repeat: no-repeat;
   padding: 1em 0 4em 0;
   color: white;
 }
@@ -170,10 +184,25 @@ span {
   padding: 1em 0;
 }
 
+.section-content_skills {
+  padding-top: 2em;
+  margin: 0 auto;
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+.skill-icon {
+  width: 40px;
+}
+
 .projects {
   display: grid;
   gap: 1em;
   margin: 0 1em;
+}
+
+.projects[data-visible="false"] {
+  display: none;
 }
 
 .project {
@@ -208,61 +237,84 @@ span {
   margin-bottom: auto;
 }
 
+.project-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
 .project-link {
   color: white;
   text-decoration: none;
   font-weight: 700;
   font-size: 1.2rem;
-  border-bottom: 3px solid white;
-  align-self: flex-start;
 }
 
 .project-img {
   width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 850px) {
   .about-section {
     display: grid;
     grid-template-columns: minmax(30ch, 55ch) 1fr;
     grid-template-areas:
-      ". img"
-      "banner img"
-      "content img";
+      ". img ."
+      "banner img ."
+      "content img ."
+      "skils skills skills";
     grid-column-gap: 1em;
-    margin: 2em 0;
-    max-width: 800px;
-    margin: 3em auto;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 7em 0;
   }
 
   .section-banner {
+    position: relative;
     justify-content: flex-start;
-    grid-column: 1 / -1;
+    grid-column: 1 / 4;
     grid-row: 1;
-    padding-left: 3em;
+    padding-left: 3.5em;
+    left: 0.5em;
   }
 
   .portfolio-img {
     grid-area: img;
+    width: 95%;
+    z-index: 999;
   }
 
   .section-content_about {
     margin-top: 1em;
-    padding-left: 1em;
-    grid-area: content;
+    padding-left: 0.5em;
+    grid-row: 2 / 4;
+  }
+
+  .section-content_skills {
+    grid-area: skills;
+    grid-column-start: 1;
+    padding-top: 3em;
+  }
+
+  .skill-icon {
+    width: 75px;
   }
 
   .projects-section {
-    padding: 0 2em;
-    padding-bottom: 7em;
+    padding: 1em 0 7em 0;
   }
 
   .projects {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: repeat(auto, 1fr);
     max-width: 1100px;
     margin: 0 auto;
+    gap: 0;
+  }
+
+  .project {
+    margin: 1em;
   }
 
   .project-img {
@@ -273,4 +325,59 @@ span {
     padding-left: 2em;
     padding-bottom: 2em;
   }
+}
+
+/* Project Tab */
+.tab-list {
+  --gap: 2rem;
+  margin-bottom: 2em;
+}
+
+.underlined-indicators > * {
+  cursor: pointer;
+  padding: var(--underline-gap, 1rem) 0;
+  border: 0;
+  border-bottom: 0.2rem solid transparent;
+}
+
+.underlined-indicators > *:hover,
+.underlined-indicators > *:focus {
+  border-color: hsl(0, 0%, 50%);
+}
+
+.underlined-indicators > .active,
+.underlined-indicators > [aria-selected="true"] {
+  color: var(--clr-primary);
+  border-color: var(--clr-primary);
+}
+
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+  justify-content: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.bg-transparent {
+  background: transparent;
+}
+
+.letter-spacing-1 {
+  letter-spacing: 4.75px;
+}
+.letter-spacing-2 {
+  letter-spacing: 2.7px;
+}
+.letter-spacing-3 {
+  letter-spacing: 2.35px;
+}
+
+.divider {
+  content: "";
+  height: 30px;
+  margin: 0 0.5em;
+  border: 0.5px solid var(--clr-primary-darker);
 }
