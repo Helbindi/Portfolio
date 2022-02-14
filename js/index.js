@@ -1,35 +1,21 @@
-// // Observe change in section for text-color switch in navigation.
-// const sections = document.querySelectorAll("section");
-// const nav = document.querySelector(".nav-list");
+// Toggle hamburger nav
+const nav = document.querySelector(".nav-list");
+const navToggle = document.querySelector(".mobile-nav-toggle");
 
-// const options = {
-//   root: null,
-//   threshold: 0.5,
-// };
+// user clicks the hamburger button
+navToggle.addEventListener("click", () => {
+  // if nav is closed, open it
+  const visibility = nav.getAttribute("data-visible");
+  if (visibility === "false") {
+    nav.setAttribute("data-visible", true);
+    navToggle.setAttribute("aria-expanded", true);
+  } else {
+    nav.setAttribute("data-visible", false);
+    navToggle.setAttribute("aria-expanded", false);
+  }
 
-// const observer = new IntersectionObserver(function (entries, observer) {
-//   entries.forEach((entry) => {
-//     if (!entry.isIntersecting) {
-//       return;
-//     }
-
-//     if (entry.target.className === "hero-section") {
-//       nav.classList.toggle("text-white");
-//     }
-
-//     if (entry.target.className === "about-section") {
-//       nav.classList.toggle("text-white");
-//     }
-
-//     if (entry.target.className === "projects-section") {
-//       nav.classList.toggle("text-white");
-//     }
-//   });
-// }, options);
-
-// sections.forEach((section) => {
-//   observer.observe(section);
-// });
+  // if nav is open, close it
+});
 
 // Projects Tab toggle
 const tab1 = document.getElementById("group-tab");
