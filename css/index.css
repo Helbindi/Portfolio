@@ -11,8 +11,8 @@ html {
 :root {
   --clr-primary: #a8e0f1;
   --clr-primary-darker: #7dbfd3;
-  --clr-secondary: #4c5f77;
-  --clr-secondary-darker: #344457;
+  --clr-secondary: #be4d25;
+  --clr-secondary-darker: #923c1d;
   --clr-text: #4e4e4e;
 }
 
@@ -62,7 +62,7 @@ body {
   flex-direction: column;
   inset: 0 0 0 30%;
   z-index: 999;
-  background: var(--clr-secondary);
+  background: #4c5f77;
 
   transform: translateX(100%);
   transition: transform 500ms ease-in-out;
@@ -266,7 +266,7 @@ span {
 
 .projects {
   display: grid;
-  gap: 1em;
+  gap: 3em;
   margin: 0 1em;
 }
 
@@ -324,8 +324,8 @@ span {
 
 .project-link:hover,
 .project-link:focus {
-  color: #be4d25;
-  border-bottom: 0.2rem solid #be4d25;
+  color: var(--clr-secondary);
+  border-bottom: 0.2rem solid var(--clr-secondary);
 }
 
 .project-img {

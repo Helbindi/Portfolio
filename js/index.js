@@ -4,17 +4,16 @@ const navToggle = document.querySelector(".mobile-nav-toggle");
 
 // user clicks the hamburger button
 navToggle.addEventListener("click", () => {
-  // if nav is closed, open it
   const visibility = nav.getAttribute("data-visible");
   if (visibility === "false") {
+    // if nav is closed, open it
     nav.setAttribute("data-visible", true);
     navToggle.setAttribute("aria-expanded", true);
   } else {
+    // if nav is open, close it
     nav.setAttribute("data-visible", false);
     navToggle.setAttribute("aria-expanded", false);
   }
-
-  // if nav is open, close it
 });
 
 // Projects Tab toggle
